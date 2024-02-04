@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - '8080:80'
+    volumes:
+      - ./docker/common/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - php-fpm
+  php-fpm:
+    build: ./docker/dev/php-fpm
+    volumes:
+      - './:/var/www/html'
